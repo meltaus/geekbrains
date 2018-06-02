@@ -2,9 +2,6 @@ package gorbachev.javacore.lesson2;
 
 import gorbachev.javacore.lesson2.essence.TransformationArray;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Lesson2 {
 
     public static void main(String[] args) {
