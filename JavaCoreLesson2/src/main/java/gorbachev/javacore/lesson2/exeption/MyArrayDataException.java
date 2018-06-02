@@ -12,6 +12,12 @@ public class MyArrayDataException extends Exception {
     }
 
     public MyArrayDataException(String msg) {
-        super(String.format("%s В строке %d, в ячейке %d не верный тип данных", msg, this.row, this.column));
+        super(msg);
+    }
+
+    @Override
+    public String toString() {
+        return "В строке " + this.row + " в ячейке " + this.column + "" +
+                " неверный тип данных";
     }
 }
