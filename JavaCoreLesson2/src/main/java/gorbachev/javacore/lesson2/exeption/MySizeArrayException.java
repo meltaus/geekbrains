@@ -1,12 +1,12 @@
 package gorbachev.javacore.lesson2.exeption;
 
-public class MyExeption extends Exception {
+public class MySizeArrayException extends Exception {
 
-    public MyExeption (String msg) {
+    public MySizeArrayException(String msg) {
         super(msg);
     }
 
-    public String MySizeArrayException() {
-        return "Вы пытаетесь создать массив не верного размера";
+    public MySizeArrayException() {
+        super("Вы пытаетесь создать массив не верного размера");
     }
 }
