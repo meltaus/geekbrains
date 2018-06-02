@@ -6,7 +6,10 @@ public class Lesson2 {
 
     public static void main(String[] args) {
 
+        //Создаем строковый массив с произвольным содержимым
         TransformationArray transformationArray = new TransformationArray(createArray(4));
+
+        System.out.println(transformationArray.toString());
     }
 
 
