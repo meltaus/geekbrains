@@ -50,9 +50,17 @@ public class ListWord {
                     arrayWord = sublist;
                 }
             } while (arrayWord.size() < 10);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public List<String> getArrayWord() {
+        return arrayWord;
+    }
+
+    @Override
+    public String toString() {
+        return this.arrayWord.toString();
     }
 }
