@@ -2,12 +2,13 @@ package ru.gorbachev.javacore.lesson3.essence;
 //Объект который загружает в себя случайное количество слов (10-20) из ресурса book.txt из случайного места, но подряд.
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ListWord {
 
@@ -15,45 +16,43 @@ public class ListWord {
 
     public ListWord() {
         //Публичным будет только конструктор и toString.
-        this.readResource();
+        ClassLoader classLoader = getClass().getClassLoader();
+        String path = classLoader.getResource("book.txt").getPath();
+        this.readResource(path);
     }
 
     //Загружаем текстовый файл, читаем оттуда рандомную строку
     //Строка выбирается путем выбора случайного байта из размера всего файла.
     //Если в строе меньше 10 слов - добавляется еще одна строка. Если получилось больше 20 - удалаются лишние
     // справа
-    private void readResource() {
-        File file = new File("/resources/book.txt");
-        RandomAccessFile randomAccessFile;
-
+    private void readResource(String path) {
         try {
-            randomAccessFile = new RandomAccessFile(file, "r");
-            long file_size = file.length();
-            long choosen_byte = (long)(Math.random() * file_size);
+            String randomString = "";
+            do {
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+                List<String> lines = new ArrayList<String>();
 
-            randomAccessFile.seek(choosen_byte);
+                String line = reader.readLine();
 
-            for (;;) {
-                byte a_byte = randomAccessFile.readByte();
-                char wordChar = (char)a_byte;
-                if (choosen_byte >= file_size || wordChar == '\n' || wordChar == '\r' || wordChar == -1) {
-                    break;
-                } else {
-                    choosen_byte++;
+                while (line != null) {
+                    lines.add(line);
+                    line = reader.readLine();
                 }
-                System.out.println("\"" + Character.toString(wordChar)  + "\"");
-            }
 
-            int choosen = -1;
-
-            if (choosen_byte < file_size) {
-                String s = randomAccessFile.readLine();
-                System.out.println("Chosen id : \"" + s  + "\"");
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+                Random r = new Random();
+                randomString = lines.get(r.nextInt(lines.size()));
+                randomString = randomString.replaceAll("[^a-zA-Zа-яА-Я]", " ");
+                randomString = randomString.replaceAll("[\\s]{2,}", " ");
+                arrayWord = Arrays.asList(randomString.split("\\s"));
+                if (arrayWord.size() > 20) {
+                    List<String> sublist = arrayWord.subList(0,20); // Удаляем с 2 по 4й элемент включительно
+//                    arrayWord.removeAll(sublist);
+                    arrayWord = sublist;
+                }
+            } while (arrayWord.size() < 10);
+        } catch (IOException e){
             e.printStackTrace();
         }
+
     }
 }
