@@ -46,7 +46,6 @@ public class ListWord {
                 arrayWord = Arrays.asList(randomString.split("\\s"));
                 if (arrayWord.size() > 20) {
                     List<String> sublist = arrayWord.subList(0,20); // Удаляем с 2 по 4й элемент включительно
-//                    arrayWord.removeAll(sublist);
                     arrayWord = sublist;
                 }
             } while (arrayWord.size() < 10);
