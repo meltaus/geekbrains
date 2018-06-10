@@ -9,8 +9,8 @@ public class Lesson4 {
     public static void main (String[] args) {
         JFrame mainWindows = new JFrame("Чат");
         mainWindows.setContentPane(new MainWindow().getWindowPanel());
+        mainWindows.setBounds(50, 50, 600, 500);
         mainWindows.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainWindows.pack();
         mainWindows.setVisible(true);
     }
 }
