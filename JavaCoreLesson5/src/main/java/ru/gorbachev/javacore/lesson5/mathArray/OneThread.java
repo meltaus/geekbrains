@@ -19,6 +19,6 @@ public class OneThread implements Runnable {
         for (int i = 0; i < this.size; i++) {
             arr[i] = (float)(arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
         }
-        System.out.println("Время выполнения в одном потоке " + (System.currentTimeMillis() - a) + "мс");
+        System.out.println("Время выполнения в одном потоке " + (System.currentTimeMillis() - a) + " мс");
     }
 }
